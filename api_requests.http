@@ -1,0 +1,74 @@
+### Credit Score API - click "Send Request" above each request (needs the REST Client extension)
+### Start the API first:  Run and Debug -> "1. Run API (FastAPI)"
+
+@host = http://127.0.0.1:8000
+
+### Health check
+GET {{host}}/health
+
+### Model information
+GET {{host}}/model-info
+
+### Predict one customer (expected: Good)
+POST {{host}}/predict
+Content-Type: application/json
+
+{
+  "Month": "January",
+  "Age": 28,
+  "Occupation": "Scientist",
+  "Annual_Income": 19114.12,
+  "Monthly_Inhand_Salary": 1824.84,
+  "Num_Bank_Accounts": 3,
+  "Num_Credit_Card": 4,
+  "Interest_Rate": 3,
+  "Num_of_Loan": 4,
+  "Type_of_Loan": "Auto Loan, Credit-Builder Loan, Personal Loan, and Home Equity Loan",
+  "Delay_from_due_date": 3,
+  "Num_of_Delayed_Payment": 7,
+  "Changed_Credit_Limit": 11.27,
+  "Num_Credit_Inquiries": 4,
+  "Credit_Mix": "Good",
+  "Outstanding_Debt": 809.98,
+  "Credit_Utilization_Ratio": 26.82,
+  "Credit_History_Age": "22 Years and 9 Months",
+  "Payment_of_Min_Amount": "No",
+  "Total_EMI_per_month": 49.57,
+  "Amount_invested_monthly": 80.42,
+  "Payment_Behaviour": "High_spent_Small_value_payments",
+  "Monthly_Balance": 312.49
+}
+
+### Predict a risky customer (high debt, many delays, bad mix)
+POST {{host}}/predict
+Content-Type: application/json
+
+{
+  "Age": 35,
+  "Annual_Income": 22000,
+  "Monthly_Inhand_Salary": 1700,
+  "Num_Bank_Accounts": 8,
+  "Num_Credit_Card": 9,
+  "Interest_Rate": 28,
+  "Num_of_Loan": 7,
+  "Delay_from_due_date": 45,
+  "Num_of_Delayed_Payment": 22,
+  "Num_Credit_Inquiries": 12,
+  "Credit_Mix": "Bad",
+  "Outstanding_Debt": 4200,
+  "Credit_Utilization_Ratio": 40,
+  "Credit_History_Age": 40,
+  "Payment_of_Min_Amount": "Yes",
+  "Payment_Behaviour": "Low_spent_Small_value_payments"
+}
+
+### Batch prediction
+POST {{host}}/predict/batch
+Content-Type: application/json
+
+{
+  "records": [
+    {"Age": 28, "Credit_Mix": "Good", "Outstanding_Debt": 500, "Interest_Rate": 4},
+    {"Age": 45, "Credit_Mix": "Bad", "Outstanding_Debt": 4000, "Interest_Rate": 30}
+  ]
+}

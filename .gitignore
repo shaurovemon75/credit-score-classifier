@@ -1,0 +1,11 @@
+__pycache__/
+*.pyc
+.venv/
+venv/
+.ipynb_checkpoints/
+.pytest_cache/
+.vscode/*
+!.vscode/settings.json
+!.vscode/launch.json
+.env
+.DS_Store

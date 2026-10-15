@@ -1,0 +1,74 @@
+
+### GET /health  [HTTP 200]
+{
+  "status": "ok",
+  "model_loaded": true
+}
+
+### GET /model-info  [HTTP 200]
+{
+  "classes": [
+    "Poor",
+    "Standard",
+    "Good"
+  ],
+  "n_features": 36,
+  "params": {
+    "num_leaves": 63,
+    "learning_rate": 0.05,
+    "n_estimators": 400,
+    "min_child_samples": 30
+  },
+  "holdout_metrics": {
+    "accuracy": 0.70005,
+    "macro_f1": 0.6937647013551483,
+    "weighted_f1": 0.702549896694973
+  },
+  "trained_at": "2026-10-14T17:47:39+00:00",
+  "sklearn_version": "1.8.0"
+}
+
+### POST /predict (single record)  [HTTP 200]
+{
+  "credit_score": "Good",
+  "class_id": 2,
+  "probabilities": {
+    "Poor": 0.0236,
+    "Standard": 0.0782,
+    "Good": 0.8982
+  }
+}
+
+### POST /predict/batch (3 rows from test.csv)  [HTTP 200]
+{
+  "count": 3,
+  "predictions": [
+    {
+      "credit_score": "Good",
+      "class_id": 2,
+      "probabilities": {
+        "Poor": 0.0723,
+        "Standard": 0.1195,
+        "Good": 0.8082
+      }
+    },
+    {
+      "credit_score": "Good",
+      "class_id": 2,
+      "probabilities": {
+        "Poor": 0.0448,
+        "Standard": 0.1509,
+        "Good": 0.8043
+      }
+    },
+    {
+      "credit_score": "Good",
+      "class_id": 2,
+      "probabilities": {
+        "Poor": 0.0609,
+        "Standard": 0.1412,
+        "Good": 0.7979
+      }
+    }
+  ]
+}

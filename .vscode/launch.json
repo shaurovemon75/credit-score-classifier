@@ -1,0 +1,35 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "1. Run API (FastAPI)",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "uvicorn",
+      "args": ["api.main:app", "--reload", "--port", "8000"],
+      "justMyCode": true
+    },
+    {
+      "name": "2. Call API demo client",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${workspaceFolder}/scripts/call_api.py",
+      "console": "integratedTerminal"
+    },
+    {
+      "name": "3. Train model",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "creditscore.train",
+      "console": "integratedTerminal"
+    },
+    {
+      "name": "4. Run tests",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "pytest",
+      "args": ["-q"],
+      "console": "integratedTerminal"
+    }
+  ]
+}
